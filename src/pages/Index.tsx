@@ -132,7 +132,7 @@ const Index: React.FC = () => {
                         </h2>
 
                         <div className="flex flex-wrap justify-center gap-8 md:gap-16">
-                            {["Mint", "Solana Labs", "Solscan", "Metaplex"].map(
+                            {["Solana Labs", "Solscan", "Metaplex"].map(
                                 (name, index) => (
                                     <div
                                         key={index}
