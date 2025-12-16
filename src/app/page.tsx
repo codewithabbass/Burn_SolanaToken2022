@@ -1,18 +1,18 @@
-import React from "react";
+"use client";
 import ParticleBackground from "../components/ParticleBackground";
 import TokenBurnForm from "../components/TokenBurnForm";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Flame, Zap, Shield } from "lucide-react";
 
-const Index: React.FC = () => {
+const Home = () => {
     return (
         <div className="min-h-screen flex flex-col">
             <ParticleBackground />
             <Navbar />
 
-            <main className="flex-grow pt-32 pb-20">
-                <div className="container mx-auto max-w-7xl">
+            <main className="grow pt-32 pb-20">
+                <div className="container mx-auto">
                     <div className="text-center mb-12 animate-fade-in">
                         <div className="inline-block mb-4">
                             <span className="inline-block bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full">
@@ -154,4 +154,4 @@ const Index: React.FC = () => {
     );
 };
 
-export default Index;
+export default Home;

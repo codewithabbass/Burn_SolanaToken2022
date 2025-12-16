@@ -1,4 +1,4 @@
-
+"use client";
 import React from 'react';
 import { Flame, Github, Twitter } from 'lucide-react';
 

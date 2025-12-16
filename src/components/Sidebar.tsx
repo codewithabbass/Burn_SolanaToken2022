@@ -1,26 +1,16 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
     Sheet,
-    SheetClose,
     SheetContent,
-    SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-import { Link } from "react-router-dom";
-import WalletConnect from "./WalletConnect";
 import { Menu } from "lucide-react";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+import Link from "next/link";
 import { FC } from "react";
+import WalletConnect from "./WalletConnect";
 type Props = {
     network: string;
 };
@@ -36,17 +26,17 @@ const Sidebar: FC<Props> = ({ network }) => {
                 <SheetHeader>
                     <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
-                <div className="grid gap-4 py-4">
+                <div className="grid gap-4 p-4">
                     <div className="animate-fade-in">
                         <div className="py-4 space-y-4">
                             <Link
-                                to="/"
+                                href="/"
                                 className="block text-foreground/80 hover:text-primary transition-colors duration-200"
                             >
                                 Home
                             </Link>
                             <Link
-                                to="https://solana.com/ru/developers/courses/tokens-and-nfts/token-program-advanced"
+                                href="https://solana.com/ru/developers/courses/tokens-and-nfts/token-program-advanced"
                                 className="block text-foreground/80 hover:text-primary transition-colors duration-200"
                                 target="_blank"
                             >

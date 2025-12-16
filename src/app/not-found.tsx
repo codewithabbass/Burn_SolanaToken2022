@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import ParticleBackground from "../components/ParticleBackground";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+"use client";
 import { AlertCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import ParticleBackground from "../components/ParticleBackground";
 
-const NotFound: React.FC = () => {
+const NotFound = () => {
     return (
         <div className="min-h-screen flex flex-col">
             <ParticleBackground />
             <Navbar />
 
-            <main className="flex-grow flex items-center justify-center px-6 py-24">
+            <main className="grow flex items-center justify-center px-6 py-24">
                 <div className="glass-card p-8 md:p-12 max-w-md w-full text-center animate-scale-in">
                     <div className="flex items-center justify-center mb-6">
                         <div className="relative">
@@ -31,7 +31,7 @@ const NotFound: React.FC = () => {
                     </p>
 
                     <Link
-                        to="/"
+                        href="/"
                         className="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200"
                     >
                         Return to Home

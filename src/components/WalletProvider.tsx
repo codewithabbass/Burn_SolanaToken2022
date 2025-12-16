@@ -1,12 +1,14 @@
-// src/WalletProvider.tsx
+"use client";
 import { connection } from "@/lib/config";
 import {
     ConnectionProvider,
     WalletProvider,
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import "@solana/wallet-adapter-react-ui/styles.css";
 import React, { ReactNode, useMemo } from "react";
+
+// Import styles
+import "@solana/wallet-adapter-react-ui/styles.css";
 
 interface WalletContextProviderProps {
     children: ReactNode;

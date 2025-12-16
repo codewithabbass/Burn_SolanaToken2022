@@ -4,9 +4,7 @@ import {
     TOKEN_2022_PROGRAM_ID,
 } from "@solana/spl-token";
 import { Connection, PublicKey, Transaction } from "@solana/web3.js";
-import * as buffer from "buffer";
 import { connection } from "./config";
-window.Buffer = buffer.Buffer;
 
 interface BurnInterface {
     mintAddress: string;
@@ -54,8 +52,13 @@ const burnTokens = async ({
         console.log("Burn Transaction Signature:", signature);
         return signature;
     } catch (error) {
-        console.log("Error Occurred While Burning Tokens:", error.message);
-        throw new Error(`Error burning tokens: ${error.message}`);
+        if (error instanceof Error) {
+            console.log("Error Occurred While Burning Tokens:", error.message);
+            throw new Error(`Error burning tokens: ${error.message}`);
+        } else {
+            console.log("Error Occurred While Burning Tokens:", error);
+            throw new Error(`Error burning tokens: ${String(error)}`);
+        }
     }
 };
 

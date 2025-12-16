@@ -1,11 +1,10 @@
-import { FC } from "react";
 
 interface TruncatedStringProps {
     str: string;
     maxLength?: number; // Make maxLength optional
 }
 
-const truncateString: FC<TruncatedStringProps> = ({ str, maxLength = 10 }): string => {
+export const truncateString = ({ str, maxLength = 10 }: TruncatedStringProps): string => {
     if (str.length <= maxLength) return str;
 
     const start = str.slice(0, Math.ceil(maxLength / 2));
@@ -13,4 +12,4 @@ const truncateString: FC<TruncatedStringProps> = ({ str, maxLength = 10 }): stri
 
     return `${start}...${end}`;
 };
-export default truncateString;
+;

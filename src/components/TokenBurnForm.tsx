@@ -1,15 +1,11 @@
+"use client";
 import burnTokens from "@/lib/burnTokens";
+import { DOC_URL } from "@/lib/config";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import {
-    AlertCircle,
-    ArrowRight,
-    CheckCircle,
-    Flame,
-    Info,
-} from "lucide-react";
+import { AlertCircle, ArrowRight, Flame, Info } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 const TokenBurnForm: React.FC = () => {
@@ -66,9 +62,8 @@ const TokenBurnForm: React.FC = () => {
                 mintAddress,
                 burnAmount: Amount,
                 tokenDecimals: Decimals,
-                owner: publicKey?.toBase58(),
+                owner: publicKey!.toBase58(),
                 sendTransaction,
-
             });
             setTx(signature);
 
@@ -84,7 +79,14 @@ const TokenBurnForm: React.FC = () => {
         } catch (error) {
             setTransactionStatus("error");
             toast.error("Transaction failed. Please try again.");
-            console.log("Burn transaction error:", error.message);
+            if (error && typeof error === "object" && "message" in error) {
+                console.log(
+                    "Burn transaction error:",
+                    (error as { message: string }).message
+                );
+            } else {
+                console.log("Burn transaction error:", error);
+            }
         } finally {
             setIsSubmitting(false);
         }
@@ -201,7 +203,7 @@ const TokenBurnForm: React.FC = () => {
                     <span>See Transaction:</span>
 
                     <Link
-                        to={`https://solscan.io/tx/${tx}?cluster=${
+                        href={`https://solscan.io/tx/${tx}?cluster=${
                             connection.rpcEndpoint.includes("devnet")
                                 ? "devnet"
                                 : "mainnet"
@@ -219,7 +221,7 @@ const TokenBurnForm: React.FC = () => {
                     <ArrowRight size={14} />
                     <span>Learn more about</span>
                     <Link
-                        to="https://solana.com/ru/developers/courses/tokens-and-nfts/token-program-advanced"
+                        href={DOC_URL}
                         target="_blank"
                         className="text-primary hover:underline"
                     >

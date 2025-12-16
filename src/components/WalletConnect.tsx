@@ -1,37 +1,44 @@
-import React, { useCallback } from "react";
+"use client";
+import { truncateString } from "@/utils/truncateString";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import truncateString from "@/utils/truncateString";
+import React, { useCallback } from "react";
+import { Button } from "./ui/button";
 const WalletConnect: React.FC = () => {
-    const { connected, wallet, connect, disconnect, publicKey } = useWallet();
+    const { connected, wallet, disconnect, publicKey } = useWallet();
     const { setVisible } = useWalletModal();
-    const handleConnect = useCallback(async () => {
+    const handleConnect = useCallback(() => {
         if (!connected) {
             setVisible(true);
         }
     }, [setVisible, connected]);
 
-    const handleDisconnect = useCallback(async () => {
+    const handleDisconnect = useCallback(() => {
         if (wallet) {
-            await disconnect();
+            disconnect();
         }
     }, [wallet, disconnect]);
 
     return (
         <div>
             {connected ? (
-                <div className="glass-card px-4 py-2 text-primary hover:text-white hover:bg-primary/80 transition-colors duration-200">
-                    <button onClick={handleDisconnect}>
-                        {truncateString({ str: publicKey.toBase58() })}
-                    </button>
-                </div>
-            ) : (
-                <button
-                    onClick={() => handleConnect()}
+                <Button
+                    onClick={() => handleDisconnect()}
+                    size={"lg"}
                     className="glass-card px-4 py-2 text-primary hover:text-white hover:bg-primary/80 transition-colors duration-200"
                 >
+                    {publicKey?.toString()
+                        ? truncateString({ str: publicKey?.toString() }) // Ensure truncateString is synchronous and returns a string
+                        : ""}
+                </Button>
+            ) : (
+                <Button
+                    onClick={() => handleConnect()}
+                    className="glass-card px-4 py-2 text-primary hover:text-white hover:bg-primary/80 transition-colors duration-200"
+                    size={"lg"}
+                >
                     Connect Wallet
-                </button>
+                </Button>
             )}
         </div>
     );
